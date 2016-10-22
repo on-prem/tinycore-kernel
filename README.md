@@ -60,7 +60,7 @@ This occurs when you recompile the kernel (ex: `vmlinuz64`) without recompiling 
 
 ### Kernel seems to boot, but can't mount loop or disks
 
-The `modules.dep` file should point to `.ko.gz` kernel modules, but Linux compiles them as `.ko` by default. The `Makefile` in this repo gzips all modules, and then performs a `sed` on the newly built `modules.dep` to ensure it also contains `.ko.gz` entries. This `modules.dep` will be rebuilt on boot anyways, but it still needs to correct initially.
+The `modules.dep` file should point to `.ko.gz` kernel modules, but Linux compiles them as `.ko` by default. The `Makefile` in this repo gzips all modules, and then performs a `sed` on the newly built `modules.dep` to ensure it also contains `.ko.gz` entries. This `modules.dep` will be rebuilt on boot anyways, but it still needs to be correct initially.
 
 The `kernel.tclocal` symlink is also needed for kernel module extensions to be loaded. See the [TinyCore Custom Kernel wiki page](http://wiki.tinycorelinux.net/wiki:custom_kernel) for more info.
 
