@@ -50,6 +50,28 @@ The following variables can be changed at build time, by specifying them as argu
   * `OSDIR`: Local system directory containing the TinyCore OS (`core.gz or corepure64.gz`)
   * `WORKDIR`: Temporary work path to build all the files
 
+# Gotchas
+
+TinyCore Linux kernel compiling comes with a few gotchas. The list below will hopefully help others who may run into these problems when manually compiling.
+
+### Kernel panic on boot
+
+This occurs when you recompile the kernel (ex: `vmlinuz64`) without recompiling the modules and/or module extensions. The `base` modules in the OS (ex: `corepure64.gz`) must be replaced, as well as any module extensions (ex: `ipv6-3.16.6-tinycore64.tcz`).
+
+### Kernel seems to boot, but can't mount loop or disks
+
+The `modules.dep` file should point to `.ko.gz` kernel modules, but Linux compiles them as `.ko` by default. The `Makefile` in this repo gzips all modules, and then performs a `sed` on the newly built `modules.dep` to ensure it also contains `.ko.gz` entries. This `modules.dep` will be rebuilt on boot anyways, but it still needs to correct initially.
+
+The `kernel.tclocal` symlink is also needed for kernel module extensions to be loaded. See the [TinyCore Custom Kernel wiki page](http://wiki.tinycorelinux.net/wiki:custom_kernel) for more info.
+
+### Newly compiled modules are not being loaded
+
+If you edit the kernel config using `make menuconfig` or other, and add new modules, you will need to create a new extension containing those modules. It is recommended to do that as opposed to adding them directly in the OS. Adding them to the OS can lead to problems in the future if you accidentally "forget" to include them when you update TinyCore.
+
+### Weird things are happening
+
+The default TinyCore Linux kernel is compiled with a set of Linux kernel patches. We're not too sure why they exist or what they're for, so we excluded them in our newer kernel builds (ex: `3.16.38-tinycore64`). You're better off patching your kernel with the same patches if you experience strange system behaviour.
+
 # Notes
 
 This is a very early initial release, so it may be buggy, and might not be complete. Please inspect `WORKDIR` after building, if you want to package firmwares or additional modules.
