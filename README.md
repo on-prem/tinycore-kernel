@@ -70,7 +70,7 @@ If you edit the kernel config using `make menuconfig` or other, and add new modu
 
 ### Weird things are happening
 
-The default TinyCore Linux kernel is compiled with a set of Linux kernel patches. We're not too sure why they exist or what they're for, so we excluded them in our newer kernel builds (ex: `3.16.38-tinycore64`). You're better off patching your kernel with the same patches if you experience strange system behaviour.
+The default TinyCore Linux kernel is compiled with a set of cosmetic/boot Linux kernel patches, and one patch for AGP. We excluded them in our newer kernel builds (ex: `3.16.38-tinycore64`), but you're better off patching your kernel with those patches if you experience strange system behaviour.
 
 # Notes
 
