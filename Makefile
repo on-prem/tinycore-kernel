@@ -77,7 +77,7 @@ $(WORKDIR)/%-$(kernelname).tcz:
 	done
 
 	cd $(WORKDIR) && \
-	mksquashfs modules-$* $@
+	mksquashfs modules-$* $@ -b 4096
 
 pkg-modules:
 	for module in $(MODULES); do \
