@@ -44,6 +44,7 @@ extensions:
 	$(MAKE) pkg-modules
 
 $(WORKDIR)/$(filename):
+	mkdir -p $(WORKDIR) && \
 	cd $(WORKDIR) && \
 	wget $(KERNEL_SOURCE)
 
@@ -63,6 +64,7 @@ build-kernel:
 	cp -v $(kerneldir)/arch/x86/boot/bzImage $(WORKDIR)/vmlinuz$(ostype)
 
 compress-modules:
+	mkdir -p $(WORKDIR) && \
 	cd $(WORKDIR)/modules-$(KERNEL) && \
 	find . -type f -name "*.ko" -exec strip --strip-unneeded {} \; && \
 	find . -type f -name "*.ko" -exec gzip {} \;
