@@ -4,7 +4,8 @@ Build a [TinyCore Linux](http://tinycorelinux.net/) kernel, modules, and firmwar
 
 # Getting Started
 
-Clone this repository.
+  1. Install build dependencies: `tce-load -wi git compiletc coreutils tc`
+  2. Clone this repository: `git clone https://github.com/jidoteki/tinycore-kernel`
 
 ### Building a kernel from scratch
 

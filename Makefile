@@ -22,10 +22,12 @@ ifeq ($(KERNEL_ARCH),x86_64)
 	ostype := 64
 	osfile := corepure64
 	kernelname := $(KERNEL)-tinycore$(ostype)
+	arch := x86_64
 else
 	ostype :=
 	osfile := core
 	kernelname := $(KERNEL)-tinycore
+	arch := i386
 endif
 
 .PHONY: all clean kernel extensions verify-kernel build-kernel compress-modules pkg-modules os
@@ -33,6 +35,7 @@ endif
 all:
 	$(MAKE) kernel
 	$(MAKE) extensions
+	$(MAKE) os
 
 kernel:
 	$(MAKE) $(WORKDIR)/$(filename)
@@ -57,10 +60,10 @@ build-kernel:
 	cd $(WORKDIR) && \
 	tar -Jxf $(filename) -C $(WORKDIR)
 	cp -v $(curdir)/kernels/config-$(kernelname) $(kerneldir)/.config
-	$(MAKE) -C $(kerneldir) oldconfig
-	$(MAKE) -C $(kerneldir) bzImage
-	$(MAKE) -C $(kerneldir) modules
-	$(MAKE) -C $(kerneldir) INSTALL_MOD_PATH=$(WORKDIR)/modules-$(KERNEL) modules_install firmware_install
+	$(MAKE) -C $(kerneldir) ARCH=$(arch) oldconfig
+	$(MAKE) -C $(kerneldir) ARCH=$(arch) bzImage
+	$(MAKE) -C $(kerneldir) ARCH=$(arch) modules
+	$(MAKE) -C $(kerneldir) ARCH=$(arch) INSTALL_MOD_PATH=$(WORKDIR)/modules-$(KERNEL) modules_install firmware_install
 	cp -v $(kerneldir)/arch/x86/boot/bzImage $(WORKDIR)/vmlinuz$(ostype)
 
 compress-modules:
