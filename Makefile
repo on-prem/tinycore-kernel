@@ -35,7 +35,6 @@ endif
 all:
 	$(MAKE) kernel
 	$(MAKE) extensions
-	$(MAKE) os
 
 kernel:
 	$(MAKE) $(WORKDIR)/$(filename)
