@@ -6,12 +6,12 @@
 #		make kernel extensions os
 # 	make all
 
-MODULES ?= all base filesystems ipv6 mtd netfilter raid-dm scsi
-KERNEL ?= 3.16.6
+MODULES ?= all base filesystems ipv6 mtd netfilter raid-dm scsi net-bridging
+KERNEL ?= 4.9.40
 KERNEL_ARCH ?= x86_64
-KERNEL_SOURCE ?= http://repo.tinycorelinux.net/6.x/x86_64/release/src/kernel/linux-3.16.6-patched.txz
-KERNEL_SHA256 ?= a0a45e4a81ae8ea5685e420b15a4532c9deb8f623069bbccf2838dcbeea25378
-OSDIR ?= /opt/tinycore/6.x/x86_64/release/distribution_files
+KERNEL_SOURCE ?= https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.9.40.tar.xz
+KERNEL_SHA256 ?= 025767f3652a656c7b5ed2949aef205f88a5acfd70ae3fe77710ad37f1662d9b
+OSDIR ?= /opt/tinycore/8.x/x86_64/release/distribution_files
 WORKDIR ?= /tmp/tinycore-kernel-build
 
 curdir   	:= $(realpath .)

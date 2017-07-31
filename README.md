@@ -9,7 +9,7 @@ Build a [TinyCore Linux](http://tinycorelinux.net/) kernel, modules, and firmwar
 
 ### Building a kernel from scratch
 
-The default kernel is `3.16.6-tinycore64`
+The default kernel is `4.9.40-tinycore64`
 
   1. `make kernel`
   2. `cd /tmp/tinycore-kernel-build`
@@ -17,7 +17,7 @@ The default kernel is `3.16.6-tinycore64`
 
 ### Building default module extensions
 
-Default modules extensions are `all, base, filesystems, ipv6, mtd, netfilter, raid-dm, scsi`.
+Default modules extensions are `all, base, filesystems, ipv6, mtd, netfilter, raid-dm, scsi, net-bridging`.
 
 The `all` extension will contain _all_ the modules.
 
@@ -25,11 +25,11 @@ The `base` extension will contain the _base_ modules which are included of the O
 
   1. `make extensions`
   2. `cd /tmp/tinycore-kernel-build`
-  3. The module extensions will be named `<module>-3.16.6-tinycore64.tcz`
+  3. The module extensions will be named `<module>-4.9.40-tinycore64.tcz`
 
 ### Rebuilding the OS (remaster) with new modules
 
-The default OS will be searched for in `/opt/tinycore/6.x/x86_64/release/distribution_files/`.
+The default OS will be searched for in `/opt/tinycore/8.x/x86_64/release/distribution_files/`.
 
   1. `make os`
   2. `cd /tmp/tinycore-kernel-build`
@@ -57,7 +57,7 @@ TinyCore Linux kernel compiling comes with a few gotchas. The list below will ho
 
 ### Kernel panic on boot
 
-This occurs when you recompile the kernel (ex: `vmlinuz64`) without recompiling the modules and/or module extensions. The `base` modules in the OS (ex: `corepure64.gz`) must be replaced, as well as any module extensions (ex: `ipv6-3.16.6-tinycore64.tcz`).
+This occurs when you recompile the kernel (ex: `vmlinuz64`) without recompiling the modules and/or module extensions. The `base` modules in the OS (ex: `corepure64.gz`) must be replaced, as well as any module extensions (ex: `ipv6-4.9.40-tinycore64.tcz`).
 
 ### Kernel seems to boot, but can't mount loop or disks
 
@@ -75,7 +75,7 @@ The default TinyCore Linux kernel is compiled with a set of cosmetic/boot Linux 
 
 # Notes
 
-This is a very early initial release, so it may be buggy, and might not be complete. Please inspect `WORKDIR` after building, if you want to package firmwares or additional modules.
+Please inspect `WORKDIR` after building, if you want to package firmwares or additional modules.
 
 # Contributing
 
@@ -87,4 +87,4 @@ If you want to improve this, please make a pull-request.
 
 [MIT License](LICENSE)
 
-Copyright (c) 2016 Alexander Williams, Unscramble <license@unscramble.jp>
+Copyright (c) 2016-2017 Alexander Williams, Unscramble <license@unscramble.jp>
