@@ -9,7 +9,7 @@ Build a [TinyCore Linux](http://tinycorelinux.net/) kernel, modules, and firmwar
 
 ### Building a kernel from scratch
 
-The default kernel is `4.9.40-tinycore64`
+The default kernel is `4.9.66-tinycore64`
 
   1. `make kernel`
   2. `cd /tmp/tinycore-kernel-build`
@@ -25,7 +25,7 @@ The `base` extension will contain the _base_ modules which are included of the O
 
   1. `make extensions`
   2. `cd /tmp/tinycore-kernel-build`
-  3. The module extensions will be named `<module>-4.9.40-tinycore64.tcz`
+  3. The module extensions will be named `<module>-4.9.66-tinycore64.tcz`
 
 ### Rebuilding the OS (remaster) with new modules
 
@@ -57,7 +57,7 @@ TinyCore Linux kernel compiling comes with a few gotchas. The list below will ho
 
 ### Kernel panic on boot
 
-This occurs when you recompile the kernel (ex: `vmlinuz64`) without recompiling the modules and/or module extensions. The `base` modules in the OS (ex: `corepure64.gz`) must be replaced, as well as any module extensions (ex: `ipv6-4.9.40-tinycore64.tcz`).
+This occurs when you recompile the kernel (ex: `vmlinuz64`) without recompiling the modules and/or module extensions. The `base` modules in the OS (ex: `corepure64.gz`) must be replaced, as well as any module extensions (ex: `ipv6-4.9.66-tinycore64.tcz`).
 
 ### Kernel seems to boot, but can't mount loop or disks
 
