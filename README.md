@@ -9,7 +9,7 @@ Build a [TinyCore Linux](http://tinycorelinux.net/) kernel, modules, and firmwar
 
 ### Building a kernel from scratch
 
-The default kernel is `4.9.66-tinycore64`
+The default kernel is `4.19.34-tinycore64`
 
   1. `make kernel`
   2. `cd /tmp/tinycore-kernel-build`
@@ -87,4 +87,4 @@ If you want to improve this, please make a pull-request.
 
 [MIT License](LICENSE)
 
-Copyright (c) 2016-2017 Alexander Williams, Unscramble <license@unscramble.jp>
+Copyright (c) 2016-2019 Alexander Williams, Unscramble <license@unscramble.jp>

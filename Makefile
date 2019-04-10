@@ -7,10 +7,10 @@
 # 	make all
 
 MODULES ?= all base filesystems ipv6 mtd netfilter raid-dm scsi net-bridging
-KERNEL ?= 4.9.66
+KERNEL ?= 4.19.34
 KERNEL_ARCH ?= x86_64
-KERNEL_SOURCE ?= https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.9.66.tar.xz
-KERNEL_SHA256 ?= 5e372b2fbf40f84e600007a1d1e273cdc1bc6ac3757ca715c185f322d4aa963b
+KERNEL_SOURCE ?= https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.34.tar.xz
+KERNEL_SHA256 ?= dd795e2a1fddbee5b03c3bb55a1926829cc08df4fdcabce62dda717ba087b8cc
 OSDIR ?= /opt/tinycore/8.x/x86_64/release/distribution_files
 WORKDIR ?= /tmp/tinycore-kernel-build
 
@@ -62,7 +62,7 @@ build-kernel:
 	$(MAKE) -C $(kerneldir) ARCH=$(arch) oldconfig
 	$(MAKE) -C $(kerneldir) ARCH=$(arch) bzImage
 	$(MAKE) -C $(kerneldir) ARCH=$(arch) modules
-	$(MAKE) -C $(kerneldir) ARCH=$(arch) INSTALL_MOD_PATH=$(WORKDIR)/modules-$(KERNEL) modules_install firmware_install
+	$(MAKE) -C $(kerneldir) ARCH=$(arch) INSTALL_MOD_PATH=$(WORKDIR)/modules-$(KERNEL) modules_install
 	cp -v $(kerneldir)/arch/x86/boot/bzImage $(WORKDIR)/vmlinuz$(ostype)
 
 compress-modules:
