@@ -26,7 +26,7 @@ jobs:
           sudo apt-get install bc squashfs-tools bison flex
           mkdir -p ${WORKDIR}/artifacts
           curl -L -o ${{ env.OSDIR }}/${{ env.osfile }} "http://repo.tinycorelinux.net/${{ env.TC_VERSION }}/${{ env.KERNEL_ARCH }}/release/distribution_files/${{ env.osfile }}"
-          sudo mv -v *.gz artifacts/
+          sudo mv -v ${{ env.OSDIR }}/*.gz artifacts/
 
       - name: Download and setup JFrog CLI
         run: |
