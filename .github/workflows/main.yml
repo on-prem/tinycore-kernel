@@ -53,4 +53,4 @@ jobs:
           jfrog bt upload \
             "${{ env.WORKDIR }}/artifacts/" \
             on-prem/tinycore-kernels/linux/${{ env.KERNEL }} \
-            ${{ env.KERNEL_ARCH }}/${{ env.KERNEL }} || true
+            ${{ env.KERNEL_ARCH }}/${{ env.KERNEL }}/ || true
