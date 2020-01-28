@@ -30,7 +30,7 @@ jobs:
           sudo -E make extensions -j2
           sudo -E make os
           cd ${{ env.WORKDIR }} && \
-            sudo mv vmlinuz* *.tcz *.gz artifacts/
+            sudo mv -v vmlinuz* *.tcz *.gz artifacts/
 
       - name: Download and setup JFrog CLI
         run: |
@@ -52,5 +52,5 @@ jobs:
             on-prem/tinycore-kernels/${{ env.KERNEL }}
           jfrog bt upload \
             "${{ env.WORKDIR }}/artifacts/" \
-            on-prem/tinycore-kernels/linux/${{ env.KERNEL }} \
+            on-prem/tinycore-kernels/${{ env.KERNEL }} \
             ${{ env.KERNEL_ARCH }}/ || true
