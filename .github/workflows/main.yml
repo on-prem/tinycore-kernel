@@ -1,0 +1,56 @@
+name: Kernel
+
+on: [push]
+
+jobs:
+  build:
+    env:
+      KERNEL: 4.19.34
+      KERNEL_ARCH: x86_64
+      KERNEL_SOURCE: https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.34.tar.xz
+      KERNEL_SHA256: dd795e2a1fddbee5b03c3bb55a1926829cc08df4fdcabce62dda717ba087b8cc
+      TC_VERSION: 10.x
+      WORKDIR: /dev/shm/tinycore-kernel-build
+      OSDIR: /dev/shm/tinycore-kernel-build
+      osfile: corepure64.gz
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v1
+
+      - name: Build the kernel (${{ env.KERNEL }}/${{ env.KERNEL_ARCH }})
+        id: tcz
+        run: |
+          sudo apt-get install bc squashfs-tools bison flex
+          mkdir -p ${WORKDIR}/artifacts
+          curl -L -o ${{ env.OSDIR }}/${{ env.osfile }} "http://repo.tinycorelinux.net/${{ env.TC_VERSION }}/${{ env.KERNEL_ARCH }}/release/distribution_files/${{ env.osfile }}"
+          sudo -E make kernel -j2
+          sudo -E make extensions -j2
+          sudo -E make os
+          cd ${{ env.WORKDIR }} && \
+            sudo mv vmlinuz* *.tcz *.gz artifacts/
+
+      - name: Download and setup JFrog CLI
+        run: |
+          curl -L -o jfrog 'https://api.bintray.com/content/jfrog/jfrog-cli-go/$latest/jfrog-cli-linux-amd64/jfrog?bt_package=jfrog-cli-linux-amd64'
+          chmod +x jfrog
+          sudo mv jfrog /usr/bin/jfrog
+
+      - name: Upload the artifact to Bintray
+        env:
+          JFROG_CLI_LOG_LEVEL: DEBUG
+          JFROG_CLI_OFFER_CONFIG: false
+        run: |
+          jfrog bt config \
+            --user ${{ secrets.BINTRAY_API_USER }} --key ${{ secrets.BINTRAY_API_KEY }}
+          jfrog bt package-show on-prem/tinycore-kernels/${{ env.KERNEL }} || \
+          jfrog bt package-create \
+            --vcs-url "https://github.com/${{ github.repository }}" \
+            --licenses "GPL-2.0" \
+            on-prem/tinycore-kernels/${{ env.KERNEL }}
+          jfrog bt upload \
+            "${{ env.WORKDIR }}/artifacts/" \
+            on-prem/tinycore-kernels/linux/${{ env.KERNEL }} \
+            ${{ env.KERNEL_ARCH }}/ || true
