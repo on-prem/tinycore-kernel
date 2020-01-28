@@ -24,7 +24,7 @@ jobs:
         id: tcz
         run: |
           sudo apt-get install bc squashfs-tools bison flex
-          mkdir -p ${WORKDIR}/artifacts
+          mkdir -p ${{ env.OSDIR }}/artifacts
           curl -L -o ${{ env.OSDIR }}/${{ env.osfile }} "http://repo.tinycorelinux.net/${{ env.TC_VERSION }}/${{ env.KERNEL_ARCH }}/release/distribution_files/${{ env.osfile }}"
           sudo mv -v ${{ env.OSDIR }}/*.gz artifacts/
 
