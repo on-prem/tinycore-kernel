@@ -26,11 +26,7 @@ jobs:
           sudo apt-get install bc squashfs-tools bison flex
           mkdir -p ${WORKDIR}/artifacts
           curl -L -o ${{ env.OSDIR }}/${{ env.osfile }} "http://repo.tinycorelinux.net/${{ env.TC_VERSION }}/${{ env.KERNEL_ARCH }}/release/distribution_files/${{ env.osfile }}"
-          sudo -E make kernel -j2
-          sudo -E make extensions -j2
-          sudo -E make os
-          cd ${{ env.WORKDIR }} && \
-            sudo mv -v vmlinuz* *.tcz *.gz artifacts/
+          sudo mv -v *.gz artifacts/
 
       - name: Download and setup JFrog CLI
         run: |
@@ -45,12 +41,12 @@ jobs:
         run: |
           jfrog bt config \
             --user ${{ secrets.BINTRAY_API_USER }} --key ${{ secrets.BINTRAY_API_KEY }}
-          jfrog bt package-show on-prem/tinycore-kernels/${{ env.KERNEL }} || \
+          jfrog bt package-show on-prem/tinycore-kernels/linux || \
           jfrog bt package-create \
             --vcs-url "https://github.com/${{ github.repository }}" \
             --licenses "GPL-2.0" \
-            on-prem/tinycore-kernels/${{ env.KERNEL }}
+            on-prem/tinycore-kernels/linux
           jfrog bt upload \
             "${{ env.WORKDIR }}/artifacts/" \
-            on-prem/tinycore-kernels/${{ env.KERNEL }} \
+            on-prem/tinycore-kernels/linux/${{ env.KERNEL }} \
             ${{ env.KERNEL_ARCH }}/ || true
