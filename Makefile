@@ -7,10 +7,10 @@
 # 	make all
 
 MODULES ?= all base filesystems ipv6 mtd netfilter raid-dm scsi net-bridging
-KERNEL ?= 4.19.34
+KERNEL ?= 4.19.99
 KERNEL_ARCH ?= x86_64
-KERNEL_SOURCE ?= https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.34.tar.xz
-KERNEL_SHA256 ?= dd795e2a1fddbee5b03c3bb55a1926829cc08df4fdcabce62dda717ba087b8cc
+KERNEL_SOURCE ?= https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.99.tar.xz
+KERNEL_SHA256 ?= 8dbc21f994af9dc3468da4e934a641b457a57cf125d1a8e8f95fe488edd5b5ab
 OSDIR ?= /opt/tinycore/8.x/x86_64/release/distribution_files
 WORKDIR ?= /tmp/tinycore-kernel-build
 
