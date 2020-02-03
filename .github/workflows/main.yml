@@ -30,7 +30,7 @@ jobs:
           sudo -E make extensions -j2
           sudo -E make os
           cd ${{ env.WORKDIR }} && \
-            sudo -E mv -v vmlinuz* *.tcz *.gz artifacts/
+            sudo -E mv -v vmlinuz* *.tcz core* artifacts/
 
       - name: Download and setup JFrog CLI
         run: |
