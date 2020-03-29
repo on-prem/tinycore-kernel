@@ -1,0 +1,17 @@
+./kernel/fs/btrfs/btrfs.ko.gz
+./kernel/fs/cifs/cifs.ko.gz
+./kernel/fs/exofs/libore.ko.gz
+./kernel/fs/hfsplus/hfsplus.ko.gz
+./kernel/fs/jffs2/jffs2.ko.gz
+./kernel/fs/jfs/jfs.ko.gz
+./kernel/fs/minix/minix.ko.gz
+./kernel/fs/nfs/blocklayout/blocklayoutdriver.ko.gz
+./kernel/fs/nfs/flexfilelayout/nfs_layout_flexfiles.ko.gz
+./kernel/fs/nfs/objlayout/objlayoutdriver.ko.gz
+./kernel/fs/nfsd/nfsd.ko.gz
+./kernel/fs/nilfs2/nilfs2.ko.gz
+./kernel/fs/overlayfs/overlay.ko.gz
+./kernel/fs/reiserfs/reiserfs.ko.gz
+./kernel/fs/ubifs/ubifs.ko.gz
+./kernel/fs/udf/udf.ko.gz
+./kernel/fs/xfs/xfs.ko.gz
