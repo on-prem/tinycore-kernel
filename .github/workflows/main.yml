@@ -5,10 +5,10 @@ on: [push]
 jobs:
   build:
     env:
-      KERNEL: 4.19.113
+      KERNEL: 4.19.134
       KERNEL_ARCH: x86_64
-      KERNEL_SOURCE: https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.113.tar.xz
-      KERNEL_SHA256: b5a0576d5f7e85aeeba4922fba8d9aa2c2a09cd6f48d07265999b890cf97c0e5
+      KERNEL_SOURCE: https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.134.tar.xz
+      KERNEL_SHA256: 7d7da84f65d31546911283c36478b548bc78c4139061a7a0241feca8318e3a6f
       TC_VERSION: 11.x
       WORKDIR: /dev/shm/tinycore-kernel-build
       OSDIR: /dev/shm/tinycore-kernel-build
