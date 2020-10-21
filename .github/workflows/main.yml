@@ -5,14 +5,17 @@ on: [push]
 jobs:
   build:
     env:
-      KERNEL: 4.19.134
+      KERNEL: 4.19.152
       KERNEL_ARCH: x86_64
-      KERNEL_SOURCE: https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.134.tar.xz
-      KERNEL_SHA256: 7d7da84f65d31546911283c36478b548bc78c4139061a7a0241feca8318e3a6f
-      TC_VERSION: 11.x
+      KERNEL_SOURCE: https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.19.152.tar.xz
+      KERNEL_SHA256: a5a6aa9c2c2810efa72b5d9723de86ccea3f965b2dd748d15e82d5fac23a055d
       WORKDIR: /dev/shm/tinycore-kernel-build
       OSDIR: /dev/shm/tinycore-kernel-build
       osfile: corepure64.gz
+
+    strategy:
+      matrix:
+        tc_version: [ '11.x', '10.x' ]
 
     runs-on: ubuntu-latest
 
@@ -24,13 +27,13 @@ jobs:
         id: tcz
         run: |
           sudo apt-get install bc squashfs-tools bison flex
-          mkdir -p ${{ env.WORKDIR }}/artifacts
-          curl -L -o ${{ env.OSDIR }}/${{ env.osfile }} "http://repo.tinycorelinux.net/${{ env.TC_VERSION }}/${{ env.KERNEL_ARCH }}/release/distribution_files/${{ env.osfile }}"
+          mkdir -p ${{ env.WORKDIR }}/artifacts/${{ matrix.tc_version }}
+          curl -L -o ${{ env.OSDIR }}/${{ env.osfile }} "http://repo.tinycorelinux.net/${{ matrix.tc_version }}/${{ env.KERNEL_ARCH }}/release/distribution_files/${{ env.osfile }}"
           sudo -E make kernel -j2
           sudo -E make extensions -j2
           sudo -E make os
           cd ${{ env.WORKDIR }} && \
-            sudo -E mv -v vmlinuz* *.tcz core* artifacts/
+            sudo -E mv -v vmlinuz* *.tcz core* artifacts/${{ matrix.tc_version }}
 
       - name: Download and setup JFrog CLI
         run: |
@@ -52,5 +55,5 @@ jobs:
             on-prem/tinycore-kernels/linux
           jfrog bt upload \
             "${{ env.WORKDIR }}/artifacts/" \
-            on-prem/tinycore-kernels/linux/${{ env.KERNEL }} \
-            ${{ env.KERNEL_ARCH }}/${{ env.KERNEL }}/ || true
+            on-prem/tinycore-kernels/linux/${{ matrix.tc_version }}/${{ env.KERNEL }} \
+            ${{ matrix.tc_version }}/${{ env.KERNEL_ARCH }}/${{ env.KERNEL }}/ || true

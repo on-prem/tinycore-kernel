@@ -2,6 +2,8 @@
 
 Build a [TinyCore Linux](http://tinycorelinux.net/) kernel, modules, and firmware extensions
 
+Kernels and modules are built automatically by GitHub Actions and can be [downloaded from Bintray](https://bintray.com/on-prem/tinycore-kernels/linux).
+
 # Getting Started
 
   1. Install build dependencies: `tce-load -wi git compiletc coreutils bc`
@@ -9,7 +11,7 @@ Build a [TinyCore Linux](http://tinycorelinux.net/) kernel, modules, and firmwar
 
 ### Building a kernel from scratch
 
-The default kernel is `4.19.134-tinycore64`
+The default kernel is `4.19.152-tinycore64`
 
   1. `make kernel`
   2. `cd /tmp/tinycore-kernel-build`
@@ -29,7 +31,7 @@ The `base` extension will contain the _base_ modules which are included of the O
 
 ### Rebuilding the OS (remaster) with new modules
 
-The default OS will be searched for in `/opt/tinycore/8.x/x86_64/release/distribution_files/`.
+The default OS will be searched for in `/opt/tinycore/<tinycore_version>/x86_64/release/distribution_files/`.
 
   1. `make os`
   2. `cd /tmp/tinycore-kernel-build`
@@ -87,4 +89,4 @@ If you want to improve this, please make a pull-request.
 
 [MIT License](LICENSE)
 
-Copyright (c) 2016-2019 Alexander Williams, Unscramble <license@unscramble.jp>
+Copyright (c) 2016-2020 Alexander Williams, Unscramble <license@unscramble.jp>
