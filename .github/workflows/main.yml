@@ -55,5 +55,5 @@ jobs:
             on-prem/tinycore-kernels/linux
           jfrog bt upload \
             "${{ env.WORKDIR }}/artifacts/" \
-            on-prem/tinycore-kernels/linux/${{ matrix.tc_version }}/${{ env.KERNEL }} \
+            on-prem/tinycore-kernels/linux/${{ env.KERNEL }} \
             ${{ matrix.tc_version }}/${{ env.KERNEL_ARCH }}/${{ env.KERNEL }}/ || true

@@ -25,7 +25,6 @@
 ./kernel/drivers/acpi/sbshc.ko.gz
 ./kernel/drivers/acpi/sbs.ko.gz
 ./kernel/drivers/acpi/video.ko.gz
-./kernel/drivers/amazon/net/ena/ena.ko.gz
 ./kernel/drivers/bcma/bcma.ko.gz
 ./kernel/drivers/block/aoe/aoe.ko.gz
 ./kernel/drivers/block/floppy.ko.gz
@@ -1114,6 +1113,7 @@
 ./kernel/drivers/net/ethernet/adaptec/starfire.ko.gz
 ./kernel/drivers/net/ethernet/alteon/acenic.ko.gz
 ./kernel/drivers/net/ethernet/altera/altera_tse.ko.gz
+./kernel/drivers/net/ethernet/amazon/ena/ena.ko.gz
 ./kernel/drivers/net/ethernet/amd/amd8111e.ko.gz
 ./kernel/drivers/net/ethernet/amd/nmclan_cs.ko.gz
 ./kernel/drivers/net/ethernet/amd/pcnet32.ko.gz
